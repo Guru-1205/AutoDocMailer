@@ -1,0 +1,5 @@
+Flask==2.3.1
+Flask-Mail==0.9.1
+gunicorn==21.2.0
+lxml==4.9.3
+python-docx==1.1.0
