@@ -3,8 +3,6 @@ from flask_mail import Mail, Message
 from io import BytesIO
 from docx import Document
 from docx.shared import Pt
-from docx.oxml import OxmlElement
-from docx.oxml.ns import nsdecls
 
 app = Flask(__name__)
 
@@ -58,7 +56,7 @@ def process():
     output_stream.seek(0)
 
     # Send the modified document via email
-    send_email('gurucharan@student.tce.edu', output_stream)
+    send_email(request.form['receiver_email'], output_stream)
 
     return "Email sent successfully!"
 
@@ -67,7 +65,7 @@ def send_email(receiver_email, attachment_stream):
     em = Message(
         'Subject of the email',
         sender='premguru1045@gmail.com',
-        recipients=['gurucharan@student.tce.edu']
+        recipients=[receiver_email]
     )
     em.body = 'Hello, this is a test message.'
     em.attach('output_document.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -75,5 +73,5 @@ def send_email(receiver_email, attachment_stream):
     mail.send(em)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
