@@ -3,6 +3,7 @@ from flask_mail import Mail, Message
 from io import BytesIO
 from docx import Document
 from docx.shared import Pt
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -30,9 +31,9 @@ def process():
     # Get user input from the form
     replace_dict = {
         '{{activityName}}': request.form['name'],
-        '{{activityFromDate}}': request.form['fromDate'],
+        '{{activityFromDate}}': format_date(request.form['fromDate']),
         '{{activityYear}}': request.form['year'],
-        '{{activityDate}}': request.form['date'],
+        '{{activityDate}}': format_date(request.form['date']),
         '{{activityPlace}}': request.form['place'],
         '{{activityDuration}}': request.form['timing'],
         '{{activityDay}}': request.form['day']
@@ -61,17 +62,25 @@ def process():
     return "Email sent successfully!"
 
 
+def format_date(raw_date):
+    # Convert the raw date string to a datetime object
+    date_object = datetime.strptime(raw_date, '%Y-%m-%d')
+    # Format the date in day/month/year format
+    formatted_date = date_object.strftime('%d/%m/%Y')
+    return formatted_date
+
+
 def send_email(receiver_email, attachment_stream):
     em = Message(
-        'Subject of the email',
+        'NSS ACTIVITY LETTER',
         sender='premguru1045@gmail.com',
         recipients=[receiver_email]
     )
-    em.body = 'Hello, this is a test message.'
-    em.attach('output_document.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    em.body = 'Activity letter'
+    em.attach('Activity_letter.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
               attachment_stream.read())
     mail.send(em)
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

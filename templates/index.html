@@ -33,13 +33,23 @@
       color: #333;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
       padding: 8px;
       margin-bottom: 16px;
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 4px;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: url('data:image/svg+xml;utf8,<svg fill="#333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z" /></svg>')
+        no-repeat right 8px center;
+      background-size: 18px;
     }
 
     input[type="submit"] {
@@ -63,10 +73,14 @@
     <h1>Activity letter</h1>
     <form action="/process" method="post">
       <label for="name">Activity Name:</label>
-      <input type="text" name="name" required /><br />
+      <select name="name">
+        <option value="Classroom activity" selected>Classroom activity</option>
+        <option value="Cell cleaning">Cell Cleaning</option>
+        <option value="Discussion meet">Discussion meet</option>
+      </select>
 
       <label for="date">Activity Date:</label>
-      <input type="text" name="date" required /><br />
+      <input type="date" name="date" required /><br />
 
       <label for="date">Activity Day:</label>
       <input type="text" name="day" required /><br />
@@ -78,12 +92,22 @@
       <input type="text" name="timing" required /><br />
 
       <label for="address">Year:</label>
-      <input type="text" name="year" required /><br />
+      <select name="year">
+        <option value="First year NSS volunteers">
+          First Year NSS volunteers
+        </option>
+        <option value="Second year NSS volunteers">
+          Second Year NSS volunteers
+        </option>
+        <option value="NSS volunteers" selected>NSS volunteers</option>
+      </select>
+
+      <label for="mail">Mail id of NSS program Officer:</label>
       <input type="email" name="receiver_email" required /><br />
       <label>drssilango@tce.edu</label>
-      <label>maciv@tce.edu</label>
+      <label>maciv@tce.edu</label><br />
       <label for="date">Date of Signature:</label>
-      <input type="text" name="fromDate" required /><br />
+      <input type="date" name="fromDate" required /><br />
 
       <input type="submit" value="Submit" />
     </form>
