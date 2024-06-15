@@ -1,6 +1,12 @@
-### AutoDocMailer: A Simple Explanation
+### Exciting Update! 🌟
 
-**AutoDocMailer** is a handy web app that helps you create and send personalized letters or circulars by using a template and filling in the necessary details automatically. Here’s how it works:
+Hey there, everyone! It’s me, **Gc**.
+
+I’m excited to share that I’ve created **AutoDocMailer**, a super-efficient web app using the Flask framework. It automates the creation and emailing of personalized letters by simply using a template and the details you provide. 
+
+You no longer need to manually edit and send out templates each time you have a new letter to send. Just fill out a form with the necessary details and edit the template.docx with your required docx, and **AutoDocMailer** will handle the rest!
+
+Here’s the best part: If you ever run into any bugs or issues, don’t hesitate to reach out. I’m here to help you resolve them. Go ahead and enjoy the convenience of automated document handling!
 
 ---
 
@@ -46,6 +52,39 @@
 
 ---
 
+### Setting Up Your App Password from Google 🔒
+
+For **AutoDocMailer** to send emails on your behalf using your Google account, you need to generate an app password. Here’s how:
+
+1. **Go to Google Account**:
+   - Visit [Google Account](https://myaccount.google.com/).
+
+2. **Sign In**:
+   - Sign in with your Google credentials if you're not already logged in.
+
+3. **Navigate to Security Settings**:
+   - In the left sidebar, click on **Security**.
+
+4. **Turn On 2-Step Verification** (if not already enabled):
+   - Under the **"Signing in to Google"** section, click **2-Step Verification** and follow the prompts to enable it.
+
+5. **Generate App Password**:
+   - Return to the **Security** page.
+   - Scroll down to **"App passwords"** and click it.
+   - Sign in again if prompted.
+   - In the **Select app** dropdown, choose **Mail**.
+   - In the **Select device** dropdown, choose **Other (Custom name)**.
+   - Enter a name (e.g., "AutoDocMailer") and click **Generate**.
+
+6. **Copy the App Password**:
+   - A 16-character password will be shown. Copy it.
+
+7. **Use the App Password**:
+   - In your `.env` file for **AutoDocMailer**, set the `SENDER_MAIL_APP_PASSWORD` to this app password.
+
+---
+
+
 ### Key Features
 
 - **Automation**: Eliminates the need to manually edit and email the template every time.
@@ -74,8 +113,9 @@
 
 ---
 
-### Conclusion
-
-**AutoDocMailer** simplifies the process of generating and sending personalized documents. Whether you need to send meeting invitations, circulars, or any other official communication, this app makes it quick and hassle-free. Just fill in the form, and let the app handle the rest!
 
 Enjoy the ease and efficiency of **AutoDocMailer**! 🚀📬
+
+Happy coding and have a blast! 🎉
+
+Cheers, **Gc**
