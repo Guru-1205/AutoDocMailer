@@ -82,6 +82,7 @@ For **AutoDocMailer** to send emails on your behalf using your Google account, y
 7. **Use the App Password**:
    - In your `.env` file for **AutoDocMailer**, set the `SENDER_MAIL_APP_PASSWORD` to this app password.
 
+Refer this video for furthur doubts - https://youtu.be/nOkpTwPvDTg?si=lNL0noZNaSgI7CHG
 ---
 
 
