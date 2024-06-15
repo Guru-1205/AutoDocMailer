@@ -4,6 +4,10 @@ from io import BytesIO
 from docx import Document
 from docx.shared import Pt
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -11,14 +15,14 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'premguru1045@gmail.com'
-app.config['MAIL_PASSWORD'] = 'lzyy wors izla arxw'
+app.config['MAIL_USERNAME'] = os.getenv('SENDER_MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('SENDER_MAIL_APP_PASSWORD')
 
 mail = Mail(app)
 
 template_path = 'static/template.docx'
 custom_font_path = 'static/fonts/times new roman bold.ttf'
-custom_font_size = Pt(12)  # Set the desired font size
+custom_font_size = Pt(14)  # Set the desired font size
 
 
 @app.route('/')
@@ -49,6 +53,9 @@ def process():
             if key in paragraph.text:
                 paragraph.text = paragraph.text.replace(key, str(value))
 
+    for paragraph in doc.paragraphs:
+        for run in paragraph.runs:
+            run.font.size = custom_font_size
     # Create an in-memory stream for the modified document
     output_stream = BytesIO()
     doc.save(output_stream)
@@ -72,8 +79,8 @@ def format_date(raw_date):
 
 def send_email(receiver_email, attachment_stream):
     em = Message(
-        'NSS ACTIVITY LETTER',
-        sender='premguru1045@gmail.com',
+        'XYZ ORGANISATION LETTER',
+        sender=os.getenv('SENDER_MAIL_USERNAME'),
         recipients=[receiver_email]
     )
     em.body = 'Activity letter'
